@@ -1,0 +1,26 @@
+{
+    "app": {
+      "name": "JamesTest",
+      "replicas": "3",
+      "cpu": "10m",
+      "memory": "128Mi",
+      "test": true,
+      "hostname": "broken"
+    },
+    "container_repo": {
+      "host": "dfsacr.azurecr.io",
+      "master_acct": "dfsacr",
+      "alt_acct": "dfsacr",
+      "jenkins_creds_id": "dfsacr_creds",
+      "repo": "JamesTest",
+      "dockeremail": ".",
+      "dockerfile": "./"
+    },
+    "pipeline": {
+        "enabled": true,
+        "debug": false,
+        "library": {
+          "branch": "master"
+        }
+    }
+  }
