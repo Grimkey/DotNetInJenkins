@@ -7,10 +7,10 @@ def pipeline = new org.whiteshieldinc.Pipeline()
 
 podTemplate(label: 'jenkins-pipeline', nodeSelector: 'os=windows', containers: [
     containerTemplate(name: 'jnlp', image: 'campbelldgunn/jnlp-slave-win:v1.0.0', args: '${computer.jnlpmac} ${computer.name}', workingDir: '/home/jenkins', resourceRequestCpu: '200m', resourceLimitCpu: '300m', resourceRequestMemory: '256Mi', resourceLimitMemory: '512Mi'),
-    containerTemplate(name: 'docker', image: 'docker:17.10', command: 'cat', ttyEnabled: true),
+    containerTemplate(name: 'docker', image: 'docker:stable-windowsservercore-1709', command: 'cat', ttyEnabled: true),
     containerTemplate(name: 'msbuild', image: 'grimkey/msbuildtoolchain:1.0', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'helm', image: 'campbelldgunn/k8s-helm:v2.7.0', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'kubectl', image: 'campbelldgunn/k8s-kubectl:v1.8.0', command: 'cat', ttyEnabled: true)
+    //containerTemplate(name: 'helm', image: 'campbelldgunn/k8s-helm:v2.7.0', command: 'cat', ttyEnabled: true),
+    //containerTemplate(name: 'kubectl', image: 'campbelldgunn/k8s-kubectl:v1.8.0', command: 'cat', ttyEnabled: true)
 ],
 volumes:[
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
