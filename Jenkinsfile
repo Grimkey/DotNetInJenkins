@@ -6,9 +6,9 @@
 def pipeline = new org.whiteshieldinc.Pipeline()
 
 podTemplate(label: 'jenkins-pipeline', nodeSelector: 'os=windows', containers: [
-    containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:3.14-1-alpine', args: '${computer.jnlpmac} ${computer.name}', workingDir: '/home/jenkins', resourceRequestCpu: '200m', resourceLimitCpu: '300m', resourceRequestMemory: '256Mi', resourceLimitMemory: '512Mi'),
+    containerTemplate(name: 'jnlp', image: 'campbelldgunn/jnlp-slave-win:v1.0.0', args: '${computer.jnlpmac} ${computer.name}', workingDir: '/home/jenkins', resourceRequestCpu: '200m', resourceLimitCpu: '300m', resourceRequestMemory: '256Mi', resourceLimitMemory: '512Mi'),
     containerTemplate(name: 'docker', image: 'docker:17.10', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'aspnetcore', image: 'microsoft/aspnetcore-build:2.0', command: 'cat', ttyEnabled: true),
+    containerTemplate(name: 'msbuild', image: 'grimkey/msbuildtoolchain:1.0', command: 'cat', ttyEnabled: true),
     containerTemplate(name: 'helm', image: 'campbelldgunn/k8s-helm:v2.7.0', command: 'cat', ttyEnabled: true),
     containerTemplate(name: 'kubectl', image: 'campbelldgunn/k8s-kubectl:v1.8.0', command: 'cat', ttyEnabled: true)
 ],
@@ -59,9 +59,8 @@ volumes:[
     // test stage
     stage ('test') {
 
-      container('aspnetcore') {
-          sh "dotnet restore"
-          sh "dotnet test ORGLite.Tests --logger:xunit"
+      container('msbuild') {
+          sh "msbuild -m"
           step([$class    : 'XUnitBuilder',
                 thresholds: [[$class: 'FailedThreshold', failedThreshold: '1']],
                 tools     : [[$class: 'XUnitDotNetTestType', pattern: '**/TestResults.xml']]])
@@ -71,8 +70,8 @@ volumes:[
     // compile stage
     stage ('compile') {
 
-      container('aspnetcore') {
-          sh "dotnet publish -c Release -o out"
+      container('msbuild') {
+          sh "msbuild -m"
       }
     }
 
