@@ -40,7 +40,7 @@ volumes:[
     // If pipeline debugging enabled
     if (config.pipeline.debug) {
       println "DEBUG ENABLED"
-      sh "env | sort"
+      powershell "env | sort"
 
       println "Running kubectl/helm tests"
       container('kubectl') {
@@ -60,7 +60,7 @@ volumes:[
     stage ('test') {
 
       container('msbuild') {
-          sh "msbuild -m"
+          powershell "msbuild -m"
           step([$class    : 'XUnitBuilder',
                 thresholds: [[$class: 'FailedThreshold', failedThreshold: '1']],
                 tools     : [[$class: 'XUnitDotNetTestType', pattern: '**/TestResults.xml']]])
@@ -71,7 +71,7 @@ volumes:[
     stage ('compile') {
 
       container('msbuild') {
-          sh "msbuild -m"
+          powershell "msbuild -m"
       }
     }
 
@@ -105,7 +105,7 @@ volumes:[
         // perform docker login to azure container registry as the docker-pipeline-plugin doesn't work with the next auth json format
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: config.container_repo.jenkins_creds_id,
                         usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-          sh "docker login -u ${env.USERNAME} -p ${env.PASSWORD} dfsacr.azurecr.io"
+          powershell "docker login -u ${env.USERNAME} -p ${env.PASSWORD} dfsacr.azurecr.io"
         }
 
         // build and publish container
