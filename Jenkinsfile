@@ -1,7 +1,7 @@
 // Declarative //
 pipeline {
   agent {
-    label 'linux'
+    label 'windows'
   }
   options {
     timeout(time: 1, unit: 'HOURS')
