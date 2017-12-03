@@ -1,6 +1,10 @@
-node {
+// Declarative //
+pipeline {
   agent {
     label 'linux'
+  }
+  options {
+    timeout(time: 1, unit: 'HOURS')
   }
   stages {
     stage('Example') {
