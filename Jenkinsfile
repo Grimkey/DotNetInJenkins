@@ -13,8 +13,11 @@ pipeline {
       }
     }
     stage('Build') {
-      powershell "dir"
-      powershell "msbuild /m"
+      steps {
+        script {
+          powershell 'Write-Output "Hello, World!" '
+        }
+      }
     }
   }
 }
