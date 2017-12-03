@@ -9,13 +9,15 @@ pipeline {
   stages {
     stage('Example') {
       steps {
-        echo 'Hello World'
+        script {
+          powershell 'cd WcfTestSolutionNet35;dir'
+        }
       }
     }
     stage('Build') {
       steps {
         script {
-          powershell 'dir'
+          powershell 'cd WcfTestSolutionNet35;msbuild /m'
         }
       }
     }
