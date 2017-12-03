@@ -15,7 +15,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          powershell 'Write-Output "Hello, World!" '
+          powershell 'dir'
         }
       }
     }
