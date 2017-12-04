@@ -17,7 +17,7 @@ pipeline {
     stage('Example') {
       steps {
         script {
-          powershell "cd {env.solutionFolder};dir"
+          powershell "cd ${env.solutionFolder};dir"
         }
       }
     }
@@ -25,14 +25,14 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          powershell "cd {env.solutionFolder};{env.msbuild40_64} /m"
+          powershell "cd ${env.solutionFolder};${env.msbuild40_64} /m"
         }
       }
     }
     stage('Test') {
       steps {
         script {
-          powershell "cd {env.testFolder};set-alias mstest '{env.mstestLoc}';mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo"
+          powershell "cd ${env.testFolder};set-alias mstest '${env.mstestLoc}';mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo"
         }
       }
     }
