@@ -29,7 +29,7 @@ pipeline {
       steps {
         script {
           //powershell 'cd WcfTestSolutionNet35;C:\\Windows\\Microsoft.NET\\Framework\\v3.5\\msbuild.exe /m'
-          powershell 'cd WcfTestSolutionNet35\\WcfHealthCheck.Test\\bin\\Debug;set-alias mstest "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\IDE\\mstest.exe";mstest /testcontainer:WcfHealthCheck.Test.dll'
+          powershell 'cd WcfTestSolutionNet35\\WcfHealthCheck.Test\\bin\\Debug;set-alias mstest "C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\IDE\\mstest.exe";mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo'
         }
       }
     }
