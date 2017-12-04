@@ -21,11 +21,17 @@ pipeline {
         }
       }
     }
-
-    stage('Build') {
+    stage('Clean') {
       steps {
         script {
           powershell "cd ${env.solutionFolder};${env.msbuild40_64} /m /t:Clean"
+        }
+      }
+    }
+    stage('Build') {
+      steps {
+        script {
+          powershell "cd ${env.solutionFolder};${env.msbuild40_64} /m"
         }
       }
     }
