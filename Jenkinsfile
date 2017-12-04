@@ -57,7 +57,7 @@ pipeline {
         DOCKERKEY = credentials('dfsacr')
       }
       steps {
-        powershell "Do work here"
+        powershell "'Do work here'"
       }
     }
   }
