@@ -37,6 +37,7 @@ pipeline {
     }
     stage('Test') {
       steps {
+        script { powershell "del ${env.testFolder}\TestResults.trx" }
         script {
           powershell "cd ${env.testFolder};set-alias mstest '${env.mstestLoc12}';mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo"
         }
