@@ -1,4 +1,9 @@
-// Declarative //
+
+// load pipeline functions
+// Requires pipeline-github-lib plugin to load library from github
+@Library('github.com/aweiker/jenkins-pipeline@helm-upgrade')
+def pipeline = new org.whiteshieldinc.Pipeline()
+
 pipeline {
   agent {
     label 'windows'
@@ -45,7 +50,14 @@ pipeline {
             mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo
             """
         }
-        junit "${env.testFolder}\\TestResults.trx"
+      }
+    }
+    stage('Publish') {
+      environment {
+        DOCKERKEY = credentials(dfsacr)
+      }
+      steps {
+        powershell "Do work here"
       }
     }
   }
