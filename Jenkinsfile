@@ -32,7 +32,7 @@ pipeline {
     stage('Test') {
       steps {
         script {
-          powershell "cd ${env.testFolder};set-alias mstest '${env.mstestLoc}';mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo"
+          powershell "cd ${env.testFolder};set-alias mstest '${env.mstestLoc12}';mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo"
         }
       }
     }
