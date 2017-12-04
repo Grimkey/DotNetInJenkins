@@ -54,7 +54,7 @@ pipeline {
     }
     stage('Publish') {
       environment {
-        DOCKERKEY = credentials(dfsacr)
+        DOCKERKEY = credentials('dfsacr')
       }
       steps {
         powershell "Do work here"
