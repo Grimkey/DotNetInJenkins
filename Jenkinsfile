@@ -4,7 +4,6 @@ pipeline {
     label 'windows'
   }
 
-  checkout scm
   options {
     timeout(time: 1, unit: 'HOURS')
   }
