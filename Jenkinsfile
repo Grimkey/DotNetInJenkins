@@ -45,7 +45,7 @@ pipeline {
             mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo
             """
         }
-        junit "${env.testFolder}\TestResults.trx"
+        junit "${env.testFolder}\\TestResults.trx"
       }
     }
   }
