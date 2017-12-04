@@ -25,7 +25,7 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          powershell "cd ${env.solutionFolder};${env.msbuild40_64} /m"
+          powershell "cd ${env.solutionFolder};${env.msbuild40_64} /m /t:Clean"
         }
       }
     }
