@@ -24,7 +24,7 @@ pipeline {
           powershell 'cd WcfTestSolutionNet35;C:\\Windows\\WinSxS\\amd64_msbuild_b03f5f7f11d50a3a_4.0.15522.0_none_d6821e3da4f1360b\\msbuild.exe /m'
         }
       }
-
+    }
     stage('Test') {
       steps {
         script {
