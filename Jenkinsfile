@@ -50,6 +50,7 @@ pipeline {
             mstest /testcontainer:WcfHealthCheck.Test.dll /resultsfile:TestResults.trx /nologo
             """
         }
+        step([$class: 'MSTestPublisher', testResultsFile:"**/*.trx", failOnError: true, keepLongStdio: true])
       }
     }
     stage('Publish') {
