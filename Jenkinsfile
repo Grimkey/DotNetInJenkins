@@ -60,8 +60,8 @@ pipeline {
       steps {
         powershell """
           docker login dfsacr.azurecr.io -u dfsacr -p ${env.DOCKERKEY}
-          docker build -t WcfHealthCheck .
-          docker push WcfHealthCheck dfsacr.azurecr.io
+          docker build -t wcfhealthcheck .
+          docker push wcfhealthcheck dfsacr.azurecr.io
           """
       }
     }
