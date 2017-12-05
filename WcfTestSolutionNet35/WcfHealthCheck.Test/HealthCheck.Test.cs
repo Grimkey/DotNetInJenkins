@@ -27,10 +27,13 @@ namespace WcfHealthCheck.Test
             Assert.IsTrue(actual.IsHealthy);
         }
 
+        /*
+        // Uncomment to test a failing test.
         [TestMethod]
         public void ForcedFail()
         {
             Assert.IsTrue(false);
         }
+        */
     }
 }
