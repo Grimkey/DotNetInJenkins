@@ -58,7 +58,10 @@ pipeline {
         DOCKERKEY = credentials('dfsacr')
       }
       steps {
-        powershell "'Do work here'"
+        powershell """
+          docker login dfsacr.azurecr.io User: dfsacr Pwd: ${env.DOCKERKEY}
+          docker image ls dfsacr.azurecr.io
+          """
       }
     }
   }
