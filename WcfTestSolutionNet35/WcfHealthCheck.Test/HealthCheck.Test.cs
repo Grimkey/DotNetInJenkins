@@ -26,5 +26,11 @@ namespace WcfHealthCheck.Test
 
             Assert.IsTrue(actual.IsHealthy);
         }
+
+        [TestMethod]
+        public void ForcedFail()
+        {
+            Assert.IsTrue(false);
+        }
     }
 }
