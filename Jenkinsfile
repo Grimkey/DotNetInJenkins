@@ -59,7 +59,7 @@ pipeline {
       }
       steps {
         powershell """
-          docker login dfsacr.azurecr.io User: dfsacr Pwd: ${env.DOCKERKEY}
+          docker login dfsacr.azurecr.io -u dfsacr -p ${env.DOCKERKEY}
           docker image ls dfsacr.azurecr.io
           """
       }
